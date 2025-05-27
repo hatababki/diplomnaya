@@ -42,13 +42,13 @@ class ProductListView(ListView):
     paginate_by = 6  # Пагинация по 6 товаров на странице
 
     def get_queryset(self):
-        # Фильтрация товаров по категории, если указана
         category_slug = self.kwargs.get('category_slug')
         queryset = Product.objects.filter(is_active=True)
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
-            queryset = queryset.filter(category=category)
-        # Поиск по названию
+            # Если категория не имеет родителя (верхний уровень), показываем все товары
+            if category.parent is not None:
+                queryset = queryset.filter(category=category)
         query = self.request.GET.get('q')
         if query:
             queryset = queryset.filter(name__icontains=query)
