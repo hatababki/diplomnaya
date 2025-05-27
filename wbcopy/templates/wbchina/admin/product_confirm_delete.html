@@ -1,0 +1,24 @@
+{% extends 'wbchina/admin/base.html' %}
+
+{% block title %}Удаление товара{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Удаление товара</h1>
+</div>
+
+<div class="alert alert-danger">
+    <h4 class="alert-heading">Внимание!</h4>
+    <p>Вы собираетесь удалить товар "{{ object.name }}". Это действие нельзя отменить.</p>
+    <hr>
+    <p class="mb-0">Вы уверены, что хотите продолжить?</p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'admin_product_list' %}" class="btn btn-secondary">Отмена</a>
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </div>
+</form>
+{% endblock %} 

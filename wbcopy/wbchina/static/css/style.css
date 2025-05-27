@@ -1,0 +1,263 @@
+
+
+:root {
+  --primary-bg: #121212;
+  --secondary-bg: #1e1e1e;
+  --acid-green: #39ff14;
+  --acid-green-hover: #32e612;
+  --text-color: #ffffff;
+  --secondary-text: #e0e0e0;  
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #000000 !important;
+  border-bottom: 2px solid var(--acid-green);
+}
+
+.navbar-brand, .nav-link {
+  color: var(--acid-green) !important;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+}
+
+.navbar-brand:hover, .nav-link:hover {
+  color: var(--acid-green-hover) !important;
+}
+
+.btn-primary {
+  background-color: var(--acid-green);
+  color: #000000;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: var(--acid-green-hover);
+  color: #000000;
+}
+
+.card {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--acid-green);
+}
+
+.card-header {
+  background-color: #000000;
+  color: var(--acid-green);
+}
+
+.alert-success {
+  background-color: rgba(57, 255, 20, 0.2);
+  color: var(--acid-green);
+  border-color: var(--acid-green);
+}
+
+.form-control {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  border: 1px solid var(--acid-green);
+}
+
+.form-control:focus {
+  background-color: #2a2a2a;
+  color: var(--text-color);
+  border-color: var(--acid-green);
+  box-shadow: 0 0 0 0.25rem rgba(57, 255, 20, 0.25);
+}
+
+.table {
+  color: var(--text-color);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(57, 255, 20, 0.05);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(57, 255, 20, 0.1);
+}
+
+a {
+  color: var(--acid-green);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--acid-green-hover);
+  text-decoration: underline;
+}
+
+/* Custom styling for product cards */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(57, 255, 20, 0.3);
+}
+
+.product-price {
+  color: var(--acid-green);
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.3);
+}
+
+/* Исправляем все синие цены на зеленые */
+.text-primary, .text-info, .text-blue {
+  color: var(--acid-green) !important;
+}
+
+/* Все числовые цены */
+[class*="00 ₽"], [class*="00 P"], [class*="00 p"], [class*="00 Р"] {
+  color: var(--acid-green) !important;
+}
+
+/* Конкретно для ценников товаров */
+[class^="1"], [class^="2"], [class^="3"], 
+[class^="4"], [class^="5"], [class^="6"], 
+[class^="7"], [class^="8"], [class^="9"] {
+  color: var(--acid-green) !important;
+}
+
+/* Стиль для плейсхолдера нет фото */
+.no-image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a2a2a;
+  color: var(--acid-green);
+  height: 200px;
+  border: 1px dashed var(--acid-green);
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Добавляем светлый текст везде */
+.card-text, p, span, div, h1, h2, h3, h4, h5, h6, td, th, .product-name {
+  color: var(--text-color);
+}
+
+/* Повышаем контраст для мелкого текста */
+small, .small {
+  color: var(--secondary-text) !important;
+  font-weight: 500;
+}
+
+.dropdown-menu {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--acid-green);
+}
+
+.dropdown-item {
+  color: var(--text-color);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: rgba(57, 255, 20, 0.2);
+  color: var(--acid-green);
+}
+
+.breadcrumb-item {
+  color: var(--text-color);
+}
+
+.breadcrumb-item.active {
+  color: var(--acid-green);
+}
+
+.list-group-item {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  border-color: #333;
+}
+
+/* Футер, который всегда внизу */
+.container {
+  flex: 1 0 auto;
+}
+
+footer {
+  background-color: #000000;
+  color: var(--secondary-text);
+  border-top: 2px solid var(--acid-green);
+  padding: 20px 0;
+  margin-top: 50px;
+  flex-shrink: 0;
+}
+
+/* Итоговые суммы в корзине */
+.product-price.total, .card-header h5, .total-amount {
+  color: var(--acid-green) !important;
+  font-weight: bold;
+}
+
+/* Для корзины */
+.cart-total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--acid-green) !important;
+}
+
+/* Глобальный стиль для всего текста для лучшей читаемости */
+* {
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Улучшенная контрастность для всех текстовых элементов */
+h1, h2, h3, h4, h5, h6, p, div, span, a, button, input, li, td, th {
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* Специально для названий продуктов */
+.card-title {
+  color: var(--acid-green);
+  font-weight: bold;
+}
+
+/* Обработка отсутствующих изображений для всех случаев */
+img:not([src]), img[src=""], img[src="#"], .empty-img {
+  display: none;
+}
+
+img:not([src]) ~ .no-image-placeholder, 
+img[src=""] ~ .no-image-placeholder,
+img[src="#"] ~ .no-image-placeholder,
+.empty-img ~ .no-image-placeholder {
+  display: flex !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--acid-green);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--acid-green-hover);
+} 

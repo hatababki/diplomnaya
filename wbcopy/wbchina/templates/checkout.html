@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Оформление заказа</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Товары в заказе</h5>
+                    {% for item in cart_items %}
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h6>{{ item.product.name }}</h6>
+                            <small class="text-muted">Количество: {{ item.quantity }}</small>
+                        </div>
+                        <span>{{ item.product.price|multiply:item.quantity }} ₽</span>
+                    </div>
+                    {% endfor %}
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <h5>Итого:</h5>
+                        <h5>{{ total }} ₽</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Данные для доставки</h5>
+                    <form method="post" action="{% url 'create_order' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Адрес доставки</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required>{{ user.address }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" value="{{ user.phone }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Подтвердить заказ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Информация о доставке</h5>
+                    <p class="card-text">
+                        <strong>Срок доставки:</strong> 2-3 рабочих дня<br>
+                        <strong>Стоимость доставки:</strong> Бесплатно при заказе от 3000 ₽<br>
+                        <strong>Способ оплаты:</strong> При получении
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,84 @@
+{% extends 'wbchina/base.html' %}
+{% load wbchina_filters %}
+
+{% block title %}Заказ №{{ order.id }} - Zonberries{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h2 class="mb-0">Заказ №{{ order.id }}</h2>
+        <span class="badge {% if order.status == 'delivered' %}bg-accent{% elif order.status == 'cancelled' %}bg-danger{% else %}bg-primary{% endif %} fs-6 align-self-center">
+            {{ order.get_status_display }}
+        </span>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5 class="card-title">Информация о заказе</h5>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p><strong>Дата заказа:</strong> {{ order.created_at|date:"d.m.Y H:i" }}</p>
+                        <p><strong>Адрес доставки:</strong> {{ order.shipping_address }}</p>
+                        <p><strong>Телефон:</strong> {{ order.phone }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="card-title">Сумма заказа</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Товары</span>
+                            <span class="product-price">{{ order.total_price }} ₽</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Доставка</span>
+                            <span class="text-accent">Бесплатно</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-0">Итого</h5>
+                            <h5 class="mb-0 cart-total">{{ order.total_price }} ₽</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="card-title">Товары в заказе</h5>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.orderitem_set.all %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.price }} ₽</td>
+                            <td>{{ item.quantity }}</td>
+                            <td class="product-price">{{ item.price|floatformat:2|multiply:item.quantity }} ₽</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 d-flex justify-content-between">
+            <a href="{% url 'profile' %}" class="btn btn-primary">
+                <i class="bi bi-arrow-left"></i> Вернуться к профилю
+            </a>
+            {% if order.status == 'pending' %}
+                <button class="btn btn-outline-danger" disabled>
+                    <i class="bi bi-x-circle"></i> Отменить заказ
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

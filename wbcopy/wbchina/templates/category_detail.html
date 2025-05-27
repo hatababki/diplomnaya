@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} - Маркетплейс{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+            {% if category.parent %}
+            <li class="breadcrumb-item"><a href="{% url 'category_detail' category.parent.slug %}">{{ category.parent.name }}</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active">{{ category.name }}</li>
+        </ol>
+    </nav>
+
+    <h2 class="mb-4">{{ category.name }}</h2>
+
+    {% if category.subcategories.all %}
+    <div class="row mb-4">
+        {% for subcategory in category.subcategories.all %}
+        <div class="col-md-4 mb-3">
+            <div class="card category-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ subcategory.name }}</h5>
+                    <a href="{% url 'category_detail' subcategory.slug %}" class="btn btn-outline-primary">Смотреть товары</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-3 mb-4">
+            <div class="card product-card">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="no-image-placeholder">
+                        <i class="bi bi-image-fill me-2"></i> НЕТ ФОТО
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.price }} ₽</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary">Подробнее</a>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                В данной категории пока нет товаров
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

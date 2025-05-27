@@ -1,0 +1,197 @@
+/* Светлая тема (по умолчанию) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --input-text: #495057;
+    --primary-color: #2ecc71;  /* Приятный зеленый */
+    --primary-hover: #27ae60;  /* Темнее при наведении */
+    --link-color: #2ecc71;     /* Цвет ссылок */
+    --link-hover: #27ae60;     /* Цвет ссылок при наведении */
+}
+
+/* Темная тема */
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --header-bg: #2d2d2d;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+    --input-bg: #333333;
+    --input-border: #404040;
+    --input-text: #e0e0e0;
+    --primary-color: #2ecc71;  /* Тот же зеленый */
+    --primary-hover: #27ae60;  /* Тот же темный зеленый */
+    --link-color: #2ecc71;     /* Тот же зеленый для ссылок */
+    --link-hover: #27ae60;     /* Тот же темный зеленый для ссылок */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar {
+    background-color: var(--header-bg) !important;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* Стили для форм */
+.form-control {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--input-text) !important;
+}
+
+.form-control:focus {
+    background-color: var(--input-bg) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--input-text) !important;
+    box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.25) !important;
+}
+
+.form-label {
+    color: var(--text-color);
+}
+
+/* Стили для кнопок */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+/* Стили для ссылок */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* Стили для кнопки переключения темы */
+.theme-switch {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.theme-switch:hover {
+    opacity: 0.8;
+}
+
+/* Стили для футера */
+.footer {
+    background-color: var(--header-bg);
+    color: var(--text-color);
+}
+
+/* Стили для алертов */
+.alert {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Стили для селектов */
+select.form-select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--input-text) !important;
+}
+
+select.form-select:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.25rem rgba(46, 204, 113, 0.25) !important;
+}
+
+/* Стили для чекбоксов и радио-кнопок */
+.form-check-input {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Стили для текстовых областей */
+textarea.form-control {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--input-text) !important;
+}
+
+/* Стили для таблиц */
+.table {
+    color: var(--text-color);
+}
+
+.table td, .table th {
+    border-color: var(--border-color);
+}
+
+/* Стили для модальных окон */
+.modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--border-color);
+}
+
+.modal-title {
+    color: var(--text-color);
+}
+
+.text-accent {
+    color: var(--primary-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+}
+
+.border-accent {
+    border-color: var(--primary-color) !important;
+}
+
+.border-main {
+    border-color: var(--border-color) !important;
+}
+
+.border-bottom-main {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.nav-link-accent {
+    color: var(--primary-color) !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link-accent:hover, .nav-link-accent:focus, .nav-link-accent.active {
+    color: var(--primary-hover) !important;
+} 

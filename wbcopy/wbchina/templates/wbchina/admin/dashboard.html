@@ -1,0 +1,129 @@
+{% extends 'wbchina/admin/base.html' %}
+
+{% block title %}Панель управления - Администратор{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Панель управления</h1>
+    
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card bg-accent text-white">
+                <div class="card-body text-center">
+                    <i class="bi bi-box-seam display-4"></i>
+                    <h5 class="card-title mt-3">Товары</h5>
+                    <p class="card-text">Всего товаров: {{ products_count }}</p>
+                    <a href="{% url 'admin_product_list' %}" class="btn btn-primary">Управление товарами</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card bg-accent text-white">
+                <div class="card-body text-center">
+                    <i class="bi bi-tags display-4"></i>
+                    <h5 class="card-title mt-3">Категории</h5>
+                    <p class="card-text">Всего категорий: {{ categories_count }}</p>
+                    <a href="{% url 'admin_category_list' %}" class="btn btn-primary">Управление категориями</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card bg-accent text-white">
+                <div class="card-body text-center">
+                    <i class="bi bi-cart-check display-4"></i>
+                    <h5 class="card-title mt-3">Заказы</h5>
+                    <p class="card-text">Всего заказов: {{ orders_count }}</p>
+                    <a href="{% url 'admin_order_list' %}" class="btn btn-primary">Управление заказами</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card bg-accent text-white">
+                <div class="card-body text-center">
+                    <i class="bi bi-people display-4"></i>
+                    <h5 class="card-title mt-3">Пользователи</h5>
+                    <p class="card-text">Всего пользователей: {{ users_count }}</p>
+                    <a href="{% url 'admin_user_list' %}" class="btn btn-primary">Управление пользователями</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Последние заказы</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Пользователь</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in recent_orders %}
+                                <tr>
+                                    <td>{{ order.id }}</td>
+                                    <td>{{ order.user.username }}</td>
+                                    <td>{{ order.total_price }} ₽</td>
+                                    <td>{{ order.get_status_display }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center">Нет заказов</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Последние пользователи</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Имя пользователя</th>
+                                    <th>Email</th>
+                                    <th>Роль</th>
+                                    <th>Дата регистрации</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in recent_users %}
+                                <tr>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.get_role_display }}</td>
+                                    <td>{{ user.date_joined|date:"d.m.Y" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center">Нет пользователей</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
