@@ -19,9 +19,13 @@
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="no-image-placeholder rounded">
-                        <i class="bi bi-image me-2"></i> Нет фото
-                    </div>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+                    {% else %}
+                        <div class="no-image-placeholder rounded">
+                            <i class="bi bi-image me-2"></i> Нет фото
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-6">
