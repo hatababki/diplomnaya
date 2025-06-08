@@ -59,7 +59,7 @@
                                             <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary flex-grow-1">
                                                 <i class="bi bi-eye"></i> Подробнее
                                             </a>
-                                            <button class="btn btn-primary">
+                                            <button class="btn btn-primary" onclick="location.href='{% url 'add_to_cart' product.id %}'">
                                                 <i class="bi bi-cart-plus"></i>
                                             </button>
                                         </div>
@@ -69,10 +69,7 @@
                         </div>
                     {% empty %}
                         <div class="col-12">
-                            <div class="alert">
-                                <i class="bi bi-info-circle"></i> Товары пока не добавлены
-                            </div>
-                        </div>
+                           
                     {% endfor %}
                 </div>
             </div>

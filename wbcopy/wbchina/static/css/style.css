@@ -261,3 +261,29 @@ img[src="#"] ~ .no-image-placeholder,
 ::-webkit-scrollbar-thumb:hover {
   background: var(--acid-green-hover);
 } 
+
+body[data-theme="light"] .dropdown-menu {
+  background-color: #fff !important;
+  color: #222 !important;
+  border: 1px solid #dee2e6 !important;
+}
+body[data-theme="light"] .dropdown-item {
+  color: var(--acid-green) !important;
+}
+body[data-theme="light"] .dropdown-item:hover, body[data-theme="light"] .dropdown-item:focus {
+  background-color: #eaffea !important;
+  color: var(--acid-green) !important;
+}
+
+body[data-theme="dark"] .dropdown-menu {
+  background-color: var(--secondary-bg) !important;
+  color: var(--acid-green) !important;
+  border: 1px solid var(--acid-green) !important;
+}
+body[data-theme="dark"] .dropdown-item {
+  color: var(--acid-green) !important;
+}
+body[data-theme="dark"] .dropdown-item:hover, body[data-theme="dark"] .dropdown-item:focus {
+  background-color: rgba(57,255,20,0.1) !important;
+  color: var(--acid-green) !important;
+}
